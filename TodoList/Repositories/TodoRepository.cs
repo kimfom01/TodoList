@@ -28,9 +28,11 @@ public class TodoRepository : IRepository
         }
     }
 
-    public IEnumerable<TodoItem?> GetItems()
+    public async Task<IEnumerable<TodoItem>?> GetItems()
     {
-        var items = _todoDbContext.TodoItems.AsNoTracking();
+        var items = await _todoDbContext.TodoItems
+                                                    .AsNoTracking()
+                                                    .ToListAsync();
 
         return items;
     }
@@ -56,5 +58,10 @@ public class TodoRepository : IRepository
     public async Task SaveChanges()
     {
         await _todoDbContext.SaveChangesAsync();
+    }
+
+    public async Task<bool> TodoItemExists(int id)
+    {
+        return await _todoDbContext.TodoItems.AnyAsync(t => t.Id == id);
     }
 }
