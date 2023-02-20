@@ -1,0 +1,31 @@
+.container {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 25px;
+    text-align: center;
+}
+
+input[type='submit'], button, [aria-label] {
+    cursor: pointer;
+}
+
+#editForm {
+    display: none;
+}
+
+table {
+    font-family: Arial, sans-serif;
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #f8f8f8;
+    padding: 1px;
+}
+
+td {
+    border: 1px solid;
+    padding: 5px;
+}
