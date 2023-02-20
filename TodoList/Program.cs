@@ -7,13 +7,29 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<TodoDbContext>(options =>
+if (builder.Environment.IsDevelopment())
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("TodoDb"));
-});
+    builder.Services.AddDbContext<TodoDbContext>(options =>
+    {
+        options.UseSqlServer(builder.Configuration.GetConnectionString("TodoDb"));
+    });
+}
+else
+{
+    builder.Services.AddDbContext<TodoDbContext>(options =>
+    {
+        options.UseNpgsql(ExternalDbConnectionHelper.GetConnectionString());
+    });
+}
 builder.Services.AddScoped<IRepository, TodoRepository>();
 
 var app = builder.Build();
+
+if (app.Environment.IsProduction())
+{
+    var scope = app.Services.CreateScope();
+    await MigrationHelper.MigrateDatabaseAsync(scope.ServiceProvider);
+}
 
 if (app.Environment.IsDevelopment())
 {
