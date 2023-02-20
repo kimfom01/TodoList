@@ -50,6 +50,11 @@ public class TodoListController: ControllerBase
     [HttpPost]
     public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
     {
+        if (string.IsNullOrWhiteSpace(todoItem.Task))
+        {
+            return BadRequest();
+        }
+
         await _repository.AddItem(todoItem);
         await _repository.SaveChanges();
 
@@ -59,6 +64,11 @@ public class TodoListController: ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult> PutTodoItem(int id, TodoItem todoItem)
     {
+        if (string.IsNullOrWhiteSpace(todoItem.Task))
+        {
+            return BadRequest();
+        }
+
         var todoItemExists = await _repository.TodoItemExists(id);
         if (!todoItemExists)
         {
