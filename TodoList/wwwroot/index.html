@@ -4,44 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/site.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" 
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <title>Todo List App</title>
 </head>
 <body>
-<div class="container">
-    <h1>Todo List</h1>
-    <h3>Add</h3>
-    <form action="javascript:void(0);" method="post" onsubmit="addItem()">
-        <input type="text" id="add-task" placeholder="New todo task">
-        <input type="submit" value="Add">
-    </form>
-    
-    <div id="editForm">
-        <h3>Edit</h3>
-        <form action="javascript:void(0);" onsubmit="updateItem()">
-            <input type="hidden" id="edit-id">
-            <input type="checkbox" id="edit-isComplete">
-            <input type="text" id="edit-task" placeholder="Todo task">
-            <input type="submit" value="Save">
-            <a onclick="closeInput()" aria-label="Close">&#10006</a>
+    <div class="container center mt-5">
+        <h1>Todo List</h1>
+        <h3>Add</h3>
+        <form class="form-group" action="javascript:void(0);" method="post" onsubmit="addItem()">
+            <input type="text" required minlength="3" id="add-task" placeholder="New todo task">
+            <input class="btn btn-primary" type="submit" value="Add">
         </form>
-    </div>
-    
-    <p id="counter"></p>
-    
-    <table>
-        <tr>
-            <th>Completed?</th>
-            <th>Task</th>
-            <th></th>
-            <th></th>
-        </tr>
-        <tbody id="tasks"></tbody>
-    </table>
-</div>
 
-<script src="js/site.js" asp-append-version="true"></script>
-<script type="text/javascript">
-    getItems();
-</script>
+        <div id="editForm">
+            <h3>Edit</h3>
+            <form class="form-group" action="javascript:void(0);" onsubmit="updateItem()">
+                <input type="hidden" id="edit-id">
+                <input type="checkbox" id="edit-isComplete">
+                <input type="text" id="edit-task" required minlength="3" placeholder="Todo task">
+                <span class="text text-danger"></span>
+                <input class="btn btn-primary" type="submit" value="Save">
+                <a onclick="closeInput()" aria-label="Close">&#10006</a>
+            </form>
+        </div>
+
+        <p id="counter"></p>
+
+        <table class="table table-striped">
+            <tr>
+                <th class="col">Completed?</th>
+                <th class="col">Task</th>
+                <th class="col"></th>
+                <th class="col"></th>
+            </tr>
+            <tbody id="tasks"></tbody>
+        </table>
+    </div>
+
+    <script src="js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        getItems();
+    </script>
 </body>
 </html>
