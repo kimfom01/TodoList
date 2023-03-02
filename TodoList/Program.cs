@@ -31,11 +31,8 @@ if (app.Environment.IsProduction())
     await MigrationHelper.MigrateDatabaseAsync(scope.ServiceProvider);
 }
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
