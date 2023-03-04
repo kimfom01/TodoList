@@ -13,7 +13,7 @@ builder.Services.AddCors(options =>
         {
             policy.WithOrigins("https://kimfom01.github.io/TodoListUI")
                 .AllowAnyHeader()
-                .AllowAnyMethod();;
+                .AllowAnyMethod();
         });
 });
 builder.Services.AddControllers();
