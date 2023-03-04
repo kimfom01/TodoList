@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using TodoList.Models;
 using TodoList.Repositories;
@@ -5,7 +6,7 @@ using TodoList.Repositories;
 namespace TodoList.Controllers;
 
 [Route("api/[controller]")]
-[ApiController]
+[ApiController, EnableCors("")]
 public class TodoListController: ControllerBase
 {
     private readonly IRepository _repository;

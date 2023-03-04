@@ -4,6 +4,13 @@ using TodoList.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("https://kimfom01.github.io/TodoListUI");
+    });
+});
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -21,6 +28,7 @@ else
         options.UseNpgsql(ExternalDbConnectionHelper.GetConnectionString());
     });
 }
+
 builder.Services.AddScoped<IRepository, TodoRepository>();
 
 var app = builder.Build();
@@ -31,6 +39,7 @@ if (app.Environment.IsProduction())
     await MigrationHelper.MigrateDatabaseAsync(scope.ServiceProvider);
 }
 
+app.UseCors();
 app.UseSwagger();
 app.UseSwaggerUI();
 
