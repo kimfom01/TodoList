@@ -2,14 +2,17 @@ using Microsoft.EntityFrameworkCore;
 using TodoList.Data;
 using TodoList.Repositories;
 
+var myAllowedOrigin = "todo origin";
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(policy =>
-    {
-        policy.WithOrigins("https://kimfom01.github.io");
-    });
+    options.AddPolicy(name: myAllowedOrigin,
+        policy =>
+        {
+            policy.WithOrigins("https://kimfom01.github.io");
+        });
 });
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -39,7 +42,7 @@ if (app.Environment.IsProduction())
     await MigrationHelper.MigrateDatabaseAsync(scope.ServiceProvider);
 }
 
-app.UseCors();
+app.UseCors(myAllowedOrigin);
 app.UseSwagger();
 app.UseSwaggerUI();
 
