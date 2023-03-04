@@ -8,7 +8,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins("https://kimfom01.github.io/TodoListUI");
+        policy.WithOrigins("https://kimfom01.github.io");
     });
 });
 builder.Services.AddControllers();
