@@ -6,7 +6,7 @@ using TodoList.Repositories;
 namespace TodoList.Controllers;
 
 [Route("api/[controller]")]
-[ApiController, EnableCors("")]
+[ApiController]
 public class TodoListController: ControllerBase
 {
     private readonly IRepository _repository;
