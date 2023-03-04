@@ -12,8 +12,8 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy.WithOrigins("https://kimfom01.github.io")
-                .AllowAnyHeader()
-                .AllowAnyMethod();
+                .AllowAnyMethod()
+                .AllowAnyHeader();
         });
 });
 builder.Services.AddControllers();
