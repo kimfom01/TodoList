@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using TodoList.Data;
 using TodoList.Repositories;
 
-var myAllowedOrigin = "todo origin";
+var myAllowedOrigin = "todo_origin";
 
 var builder = WebApplication.CreateBuilder(args);
 
