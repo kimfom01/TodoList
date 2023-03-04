@@ -11,7 +11,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: myAllowedOrigin,
         policy =>
         {
-            policy.WithOrigins("https://kimfom01.github.io/TodoListUI")
+            policy.WithOrigins("https://kimfom01.github.io")
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
